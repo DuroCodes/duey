@@ -59,7 +59,7 @@ export default commandModule({
               content: [
                 `### ${assignment.summary}`,
                 `\`📚\` ${assignment.course.split(' - ')[0]}`,
-                `\`🕛\` ${assignment.end.toLocaleString()}`,
+                `\`🕛\` <t:${~~(assignment.end.getTime() / 1000)}:f> (<t:${~~(assignment.end.getTime() / 1000)}:R>)`,
               ].join("\n"),
             }),
           ),
