@@ -34,7 +34,7 @@ export default commandModule({
     if (!userAssignments.length)
       return ctx.interaction.editReply({
         content:
-          "You have no assignments. Use the `</register:1382356915178176622>` command to add your D2L calendar.",
+          "You have no assignments. Use the </register:1382356915178176622> command to add your D2L calendar.",
       });
 
     const itemsPerPage = 5;
