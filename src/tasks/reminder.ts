@@ -9,7 +9,7 @@ import {
 } from "discord.js";
 import { and, eq, gte, lte } from "drizzle-orm";
 import { db } from "~/db";
-import { assignments } from "~/db/schema";
+import { assignments, settings } from "~/db/schema";
 
 export default scheduledTask({
   trigger: "0 0 8,12,16,20,22 * * *",
@@ -36,6 +36,14 @@ export default scheduledTask({
     );
 
     for (const [userId, assignments] of Object.entries(groupedAssignments)) {
+      const userSettings = await db
+        .select()
+        .from(settings)
+        .where(eq(settings.userId, userId))
+        .limit(1);
+
+      if (userSettings.length === 1 && !userSettings[0].notifications) continue;
+
       const sections = assignments.map((assignment) =>
         new SectionBuilder()
           .setButtonAccessory(
