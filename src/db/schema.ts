@@ -1,4 +1,4 @@
-import { pgTable, serial, text, timestamp, boolean } from "drizzle-orm/pg-core";
+import { boolean, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 
 export const assignments = pgTable("assignments", {
   id: serial("id").primaryKey(),
@@ -10,4 +10,9 @@ export const assignments = pgTable("assignments", {
   lastModified: timestamp("lastmodified").notNull(),
   userId: text("user_id").notNull(),
   complete: boolean("complete").notNull().default(false),
+});
+
+export const settings = pgTable("settings", {
+  userId: text("user_id").primaryKey(),
+  notifications: boolean("notifications").notNull().default(true),
 });
