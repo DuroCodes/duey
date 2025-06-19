@@ -12,7 +12,7 @@ import { db } from "~/db";
 import { assignments, settings } from "~/db/schema";
 
 export default scheduledTask({
-  trigger: "0 0 8,12,16,20,22 * * *",
+  trigger: "0 0 10,16,22 * * *",
   async execute(_, sdt) {
     const userAssignments = await db
       .select()
